@@ -38,8 +38,7 @@ const other: NavItemType = {
       title: <FormattedMessage id="full-page" />,
       type: 'item',
       url: '/full-page',
-      icon: icons.FullscreenOutlined,
-      target: true
+      icon: icons.FullscreenOutlined
     },
     {
       id: 'documentation',
