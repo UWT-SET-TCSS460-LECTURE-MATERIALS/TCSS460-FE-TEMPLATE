@@ -1,6 +1,6 @@
 {
-  "name": "mantis-react-next-ts",
-  "version": "3.3.0",
+  "name": "TCSS460 Next Template",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 8081",

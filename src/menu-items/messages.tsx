@@ -36,7 +36,7 @@ const pages: NavItemType = {
           id: 'view-messages',
           title: <FormattedMessage id="view-messages" />,
           type: 'item',
-          url: '/messages/view',
+          url: '/messages/list',
           icon: icons.EmailIcon
         }
       ]
