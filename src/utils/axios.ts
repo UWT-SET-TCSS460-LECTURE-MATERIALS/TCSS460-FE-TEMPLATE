@@ -23,7 +23,9 @@ axiosServices.interceptors.request.use(
 axiosServices.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response.status === 401 && !window.location.href.includes('/login')) {
+    if (error.code === 'ECONNREFUSED') {
+      return Promise.reject({ message: 'Connection refused. The credential server may be down.' });
+    } else if (error.response.status === 401 && !window.location.href.includes('/login')) {
       window.location.pathname = '/login';
     }
     return Promise.reject((error.response && error.response.data) || 'Wrong Services');
