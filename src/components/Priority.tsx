@@ -1,5 +1,5 @@
-import Avatar from "@mui/material/Avatar";
-import { yellow, red, green } from "@mui/material/colors";
+import Avatar from '@mui/material/Avatar';
+import { yellow, red, green } from '@mui/material/colors';
 
 export default function PriorityAvatar({ priority }: { priority: number }) {
   const priorityColors = [green[800], yellow[800], red[800]];
