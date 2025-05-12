@@ -28,7 +28,6 @@ export default function MessagesList() {
       .get('c/message/offset?limit=50&offset=0')
       .then((response) => {
         setMessages(response.data.entries);
-        // console.dir(response.data);
       })
       .catch((error) => console.error(error));
   }, []);
@@ -38,7 +37,6 @@ export default function MessagesList() {
       .delete('c/message/' + name)
       .then((response) => {
         response.status == 200 && setMessages(messages.filter((msg) => msg.name !== name));
-        // console.dir(response.status);
       })
       .catch((error) => console.error(error));
   };

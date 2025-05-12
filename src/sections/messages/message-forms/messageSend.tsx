@@ -43,8 +43,6 @@ export default function SendMessage({
           message: Yup.string().max(255).required('Message is required')
         })}
         onSubmit={(values, { setErrors, setSubmitting, setValues, resetForm }) => {
-          console.dir(values);
-
           axios
             .post('c/message', { name: values.name, message: values.message, priority })
             .then((response) => {

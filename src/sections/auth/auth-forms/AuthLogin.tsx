@@ -60,8 +60,8 @@ export default function AuthLogin({ providers, csrfToken }: any) {
     <>
       <Formik
         initialValues={{
-          email: 'Hattie.Hyatt28@yahoo.com',
-          password: 'ads12345',
+          email: '', // TODO for dev work, you can hardcode a known user and password here
+          password: '',
           submit: null
         }}
         validationSchema={Yup.object().shape({

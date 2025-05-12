@@ -25,7 +25,6 @@ export const authOptions: NextAuthOptions = {
             return user.data.user;
           }
         } catch (e: any) {
-          console.dir(e);
           const errorMessage = e?.message || e?.response?.data?.message || 'Something went wrong!';
           throw new Error(errorMessage);
         }
@@ -51,15 +50,16 @@ export const authOptions: NextAuthOptions = {
             email: credentials?.email,
             role: 1,
             username: credentials?.email,
-            phone: '728-238-2380'
+            phone: '729-238-2380' // TODO request phone number from user
+            // to keep testing, change the hardcoded phone number
           });
 
-          console.dir(user);
           if (user) {
             user.data.user['accessToken'] = user.data.accessToken;
             return user.data.user;
           }
         } catch (e: any) {
+          console.dir(e);
           const errorMessage = e?.message || e?.response?.data?.message || 'Something went wrong!';
           throw new Error(errorMessage);
         }

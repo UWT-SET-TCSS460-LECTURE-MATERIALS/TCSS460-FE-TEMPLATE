@@ -24,13 +24,13 @@ axiosServices.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.code === 'ECONNREFUSED') {
-      return Promise.reject({ message: 'Connection refused. The credential server may be down.' });
+      return Promise.reject({ message: 'Connection refused. The Auth/Web API server may be down.' });
     } else if (error.response.status >= 500) {
       return Promise.reject({ message: 'Server Error. Contact support' });
     } else if (error.response.status === 401 && !window.location.href.includes('/login')) {
       window.location.pathname = '/login';
     }
-    return Promise.reject((error.response && error.response.data) || 'Wrong Services');
+    return Promise.reject((error.response && error.response.data) || 'Server connection refused');
   }
 );
 
