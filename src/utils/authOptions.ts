@@ -5,6 +5,19 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 // project import
 import axios from 'utils/axios';
 
+function getRandomInt(min: number, max: number) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getRandomPhoneNumber() {
+  const areaCode = getRandomInt(100, 999);
+  const centralOfficeCode = getRandomInt(100, 999);
+  const lineNumber = getRandomInt(1000, 9999);
+  return `${areaCode}-${centralOfficeCode}-${lineNumber}`;
+}
+
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -51,7 +64,7 @@ export const authOptions: NextAuthOptions = {
             email: credentials?.email,
             role: 1,
             username: credentials?.email,
-            phone: '729-238-2380' // TODO request phone number from user
+            phone: getRandomPhoneNumber() // TODO request phone number from user
             // to keep testing, change the hardcoded phone number
           });
 
