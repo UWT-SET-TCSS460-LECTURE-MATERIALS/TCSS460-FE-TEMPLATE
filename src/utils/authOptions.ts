@@ -25,6 +25,7 @@ export const authOptions: NextAuthOptions = {
             return user.data.user;
           }
         } catch (e: any) {
+          console.error(e);
           const errorMessage = e?.message || e?.response?.data?.message || 'Something went wrong!';
           throw new Error(errorMessage);
         }
@@ -59,7 +60,7 @@ export const authOptions: NextAuthOptions = {
             return user.data.user;
           }
         } catch (e: any) {
-          console.dir(e);
+          console.error(e);
           const errorMessage = e?.message || e?.response?.data?.message || 'Something went wrong!';
           throw new Error(errorMessage);
         }
