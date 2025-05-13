@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { rest } from 'lodash';
 
 // next
 import { getSession } from 'next-auth/react';
