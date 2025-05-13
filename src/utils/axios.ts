@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import { rest } from 'lodash';
 
 // next
 import { getSession } from 'next-auth/react';
@@ -24,7 +25,12 @@ axiosServices.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.code === 'ECONNREFUSED') {
-      return Promise.reject({ message: 'Connection refused. The Auth/Web API server may be down.' });
+      const { baseURL, url, data } = error.config;
+      console.error('Connection refused. The Auth/Web API server may be down. Attempting to connect to: ');
+      console.error({ baseURL, url, data });
+      return Promise.reject({
+        message: 'Connection refused.'
+      });
     } else if (error.response.status >= 500) {
       return Promise.reject({ message: 'Server Error. Contact support' });
     } else if (error.response.status === 401 && !window.location.href.includes('/login')) {
