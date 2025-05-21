@@ -7,14 +7,11 @@ import Box from '@mui/material/Box';
 import SendIcon from '@mui/icons-material/Send';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Alert } from '@mui/material';
 
 // Project imports
 import PrioritySelector from 'components/PrioritySelector';
 import SendMessage from 'sections/messages/message-forms/messageSend';
-
-const defaultTheme = createTheme();
 
 interface IAlert {
   showAlert: boolean;
@@ -48,10 +45,12 @@ export default function MessageSend() {
     });
   };
 
-  const handlePriorityClick = (event: React.MouseEvent<HTMLElement>, newPriority: number) => newPriority && setPriority(newPriority);
+  const handlePriorityClick = (event: React.MouseEvent<HTMLElement>, newPriority: number) => {
+    newPriority && setPriority(newPriority);
+  };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <>
       {alert.showAlert && (
         <Alert severity={alert.alertSeverity as any} onClose={() => setAlert(EMPTY_ALERT)}>
           {alert.alertMessage}
@@ -80,6 +79,6 @@ export default function MessageSend() {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
+    </>
   );
 }

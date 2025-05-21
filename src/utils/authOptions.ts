@@ -29,13 +29,13 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         try {
-          const user = await axios.post('/login', {
+          const response = await axios.post('/login', {
             password: credentials?.password,
             email: credentials?.email
           });
-          if (user) {
-            user.data.user['accessToken'] = user.data.accessToken;
-            return user.data.user;
+          if (response) {
+            response.data.user['accessToken'] = response.data.accessToken;
+            return response.data.user;
           }
         } catch (e: any) {
           console.error(e);
@@ -56,7 +56,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         try {
-          const user = await axios.post('/register', {
+          const response = await axios.post('/register', {
             firstname: credentials?.firstname,
             lastname: credentials?.lastname,
             company: credentials?.company,
@@ -67,9 +67,9 @@ export const authOptions: NextAuthOptions = {
             phone: getRandomPhoneNumber() // TODO request phone number from user
           });
 
-          if (user) {
-            user.data.user['accessToken'] = user.data.accessToken;
-            return user.data.user;
+          if (response) {
+            response.data.user['accessToken'] = response.data.accessToken;
+            return response.data.user;
           }
         } catch (e: any) {
           console.error(e);
