@@ -3,3 +3,7 @@ export interface IMessage {
   name: string;
   message: string;
 }
+
+export interface MessageContextProps extends IMessage {
+  onChangeMessage: (msg: IMessage) => void;
+}
