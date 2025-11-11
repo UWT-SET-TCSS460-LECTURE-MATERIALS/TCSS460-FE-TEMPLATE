@@ -71,7 +71,6 @@ export default function Snackbar() {
           autoHideDuration={1500}
           onClose={handleClose}
           message={snackbar.message}
-          TransitionComponent={animation[snackbar.transition]}
           action={
             <>
               <Button color="primary" size="small" onClick={handleClose}>
@@ -82,17 +81,21 @@ export default function Snackbar() {
               </IconButton>
             </>
           }
+          slots={{
+            transition: animation[snackbar.transition]
+          }}
         />
       )}
-
       {/* alert snackbar */}
       {snackbar.variant === 'alert' && (
         <MuiSnackbar
-          TransitionComponent={animation[snackbar.transition]}
           anchorOrigin={snackbar.anchorOrigin}
           open={snackbar.open}
           autoHideDuration={1500}
           onClose={handleClose}
+          slots={{
+            transition: animation[snackbar.transition]
+          }}
         >
           <Alert
             variant={snackbar.alert.variant}
@@ -130,11 +133,11 @@ export default function Snackbar() {
                 )}
               </>
             }
-            sx={{
-              ...(snackbar.alert.variant === 'outlined' && {
+            sx={[
+              snackbar.alert.variant === 'outlined' && {
                 bgcolor: 'grey.0'
-              })
-            }}
+              }
+            ]}
           >
             {snackbar.message}
           </Alert>

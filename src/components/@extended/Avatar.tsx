@@ -3,7 +3,7 @@
 import { ReactNode } from 'react';
 
 // material-ui
-import { styled, useTheme, Theme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import MuiAvatar, { AvatarProps } from '@mui/material/Avatar';
 
 // project import
@@ -97,22 +97,28 @@ function getSizeStyle(size?: SizeProps) {
 
 // ==============================|| STYLED - AVATAR ||============================== //
 
-interface StyleProps {
+interface AvatarStyledProps {
   color: ColorProps;
   type?: AvatarTypeProps;
-  theme: Theme;
   size?: SizeProps;
 }
 
-const AvatarStyle = styled(MuiAvatar, { shouldForwardProp: (prop) => prop !== 'color' && prop !== 'type' && prop !== 'size' })(
-  ({ theme, color, type, size }: StyleProps) => ({
-    ...getSizeStyle(size),
-    ...getColorStyle({ theme, color, type }),
-    ...(size === 'badge' && {
-      borderColor: theme.palette.background.default
-    })
-  })
-);
+const AvatarStyle = styled(MuiAvatar, {
+  shouldForwardProp: (prop) => prop !== 'color' && prop !== 'type' && prop !== 'size'
+})<AvatarStyledProps>(({ theme, size, color, type }) => ({
+  ...getSizeStyle(size),
+  ...getColorStyle({ theme, color, type }),
+  variants: [
+    {
+      props: {
+        size: 'badge'
+      },
+      style: {
+        borderColor: theme.palette.background.default
+      }
+    }
+  ]
+}));
 
 // ==============================|| EXTENDED - AVATAR ||============================== //
 
@@ -124,10 +130,8 @@ export interface Props extends AvatarProps {
 }
 
 export default function Avatar({ children, color = 'primary', type, size = 'md', ...others }: Props) {
-  const theme = useTheme();
-
   return (
-    <AvatarStyle theme={theme} color={color} type={type} size={size} {...others}>
+    <AvatarStyle color={color} type={type} size={size} {...others}>
       {children}
     </AvatarStyle>
   );

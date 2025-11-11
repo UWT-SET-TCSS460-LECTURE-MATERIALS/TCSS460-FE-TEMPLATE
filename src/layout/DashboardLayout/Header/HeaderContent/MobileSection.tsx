@@ -54,7 +54,18 @@ export default function MobileSection() {
     <>
       <Box sx={{ flexShrink: 0, ml: 0.75 }}>
         <IconButton
-          sx={{ color: 'text.primary', bgcolor: open ? iconBackColorOpen : iconBackColor }}
+          sx={[
+            {
+              color: 'text.primary'
+            },
+            open
+              ? {
+                  bgcolor: iconBackColorOpen
+                }
+              : {
+                  bgcolor: iconBackColor
+                }
+          ]}
           aria-label="open more menu"
           ref={anchorRef}
           aria-controls={open ? 'menu-list-grow' : undefined}

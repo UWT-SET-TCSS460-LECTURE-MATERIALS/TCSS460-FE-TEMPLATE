@@ -215,13 +215,13 @@ export default function AuthRegister({ providers, csrfToken }: any) {
             <Grid item xs={12} sx={{ mt: -1 }}>
               <Typography variant="body2">
                 By Signing up, you agree to our &nbsp;
-                <NextLink href="/" passHref legacyBehavior>
-                  <Link variant="subtitle2">Terms of Service</Link>
-                </NextLink>
+                <Link component={NextLink} href="/" variant="subtitle2">
+                  Terms of Service
+                </Link>
                 &nbsp; and &nbsp;
-                <NextLink href="/" passHref legacyBehavior>
-                  <Link variant="subtitle2">Privacy Policy</Link>
-                </NextLink>
+                <Link component={NextLink} href="/" variant="subtitle2">
+                  Privacy Policy
+                </Link>
               </Typography>
             </Grid>
             {errors.submit && (

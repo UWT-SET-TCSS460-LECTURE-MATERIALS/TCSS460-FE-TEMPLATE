@@ -98,13 +98,21 @@ export default function Navigation() {
 
   return (
     <Box
-      sx={{
-        pt: drawerOpen ? (isHorizontal ? 0 : 2) : 0,
-        ...(!isHorizontal && {
+      sx={[
+        {
+          display: isHorizontal ? { xs: 'block', lg: 'flex' } : 'block'
+        },
+        drawerOpen
+          ? {
+              pt: isHorizontal ? 0 : 2
+            }
+          : {
+              pt: 0
+            },
+        !isHorizontal && {
           '& > ul:first-of-type': { mt: 0 }
-        }),
-        display: isHorizontal ? { xs: 'block', lg: 'flex' } : 'block'
-      }}
+        }
+      ]}
     >
       {navGroups}
     </Box>

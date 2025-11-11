@@ -15,7 +15,15 @@ export default function CircularWithPath({ value, size, variant, thickness, show
     <Box sx={{ position: 'relative', display: 'inline-flex' }}>
       <CircularProgress
         variant="determinate"
-        sx={{ color: pathColor ? pathColor : 'grey.200' }}
+        sx={[
+          pathColor
+            ? {
+                color: pathColor
+              }
+            : {
+                color: 'grey.200'
+              }
+        ]}
         size={size}
         thickness={thickness}
         {...others}

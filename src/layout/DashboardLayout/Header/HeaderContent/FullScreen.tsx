@@ -44,7 +44,18 @@ export default function FullScreen() {
         <IconButton
           color="secondary"
           variant="light"
-          sx={{ color: 'text.primary', bgcolor: open ? iconBackColorOpen : 'transparent' }}
+          sx={[
+            {
+              color: 'text.primary'
+            },
+            open
+              ? {
+                  bgcolor: iconBackColorOpen
+                }
+              : {
+                  bgcolor: 'transparent'
+                }
+          ]}
           aria-label="fullscreen toggler"
           onClick={handleToggle}
         >

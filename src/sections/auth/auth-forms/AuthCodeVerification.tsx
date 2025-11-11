@@ -41,13 +41,13 @@ export default function AuthCodeVerification() {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Box
-                sx={{
+                sx={(theme) => ({
                   '& input:focus-visible': {
                     outline: 'none !important',
                     borderColor: `${theme.palette.primary.main} !important`,
                     boxShadow: `${theme.customShadows.primary} !important`
                   }
-                }}
+                })}
               >
                 <OtpInput
                   value={values.otp}

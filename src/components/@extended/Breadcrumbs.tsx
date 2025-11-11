@@ -137,7 +137,7 @@ export default function Breadcrumbs({
   if (!custom && main && main.type === 'collapse' && main.breadcrumbs === true) {
     CollapseIcon = main.icon ? main.icon : ApartmentOutlined;
     mainContent = (
-      <NextLink href={main.url as string} passHref legacyBehavior>
+      <NextLink href={main.url as string}>
         <Typography
           variant={window.location.pathname === main.url ? 'subtitle1' : 'h6'}
           sx={{ textDecoration: 'none', cursor: 'pointer' }}
@@ -166,7 +166,7 @@ export default function Breadcrumbs({
         >
           <Grid item>
             <MuiBreadcrumbs aria-label="breadcrumb" maxItems={maxItems || 8} separator={separatorIcon}>
-              <NextLink href="/" passHref legacyBehavior>
+              <NextLink href="/">
                 <Typography color="text.secondary" variant="h6" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
                   {icons && <HomeOutlined style={iconSX} />}
                   {icon && !icons && <HomeFilled style={{ ...iconSX, marginRight: 0 }} />}
@@ -177,7 +177,18 @@ export default function Breadcrumbs({
             </MuiBreadcrumbs>
           </Grid>
           {title && titleBottom && (
-            <Grid item sx={{ mt: card === false ? 0.25 : 1 }}>
+            <Grid
+              item
+              sx={[
+                card === false
+                  ? {
+                      mt: 0.25
+                    }
+                  : {
+                      mt: 1
+                    }
+              ]}
+            >
               <Typography variant="h2">{main.title}</Typography>
             </Grid>
           )}
@@ -186,11 +197,9 @@ export default function Breadcrumbs({
       </MainCard>
     );
   }
-
   // items
   if ((item && item.type === 'item') || (item?.type === 'group' && item?.url) || custom) {
     itemTitle = item?.title;
-
     ItemIcon = item?.icon ? item.icon : ApartmentOutlined;
     itemContent = (
       <Typography variant="subtitle1" color="text.primary">
@@ -198,10 +207,9 @@ export default function Breadcrumbs({
         {itemTitle}
       </Typography>
     );
-
     let tempContent = (
       <MuiBreadcrumbs aria-label="breadcrumb" maxItems={maxItems || 8} separator={separatorIcon}>
-        <NextLink href="/" passHref legacyBehavior>
+        <NextLink href="/">
           <Typography color="text.secondary" variant="h6" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
             {icons && <HomeOutlined style={iconSX} />}
             {icon && !icons && <HomeFilled style={{ ...iconSX, marginRight: 0 }} />}
@@ -223,7 +231,10 @@ export default function Breadcrumbs({
               <Typography
                 key={index}
                 variant={!link.to ? 'subtitle1' : 'h6'}
-                sx={{ textDecoration: 'none', ...(link.to && { cursor: 'pointer' }) }}
+                sx={{
+                  textDecoration: 'none',
+                  ...(link.to && { cursor: 'pointer' })
+                }}
                 color={!link.to ? 'text.primary' : 'text.secondary'}
               >
                 {link.icon && <CollapseIcon style={iconSX} />}
@@ -232,7 +243,7 @@ export default function Breadcrumbs({
             );
             if (link.to) {
               breadcrumbLink = (
-                <NextLink key={key} href={link.to} passHref legacyBehavior>
+                <NextLink key={key} href={link.to}>
                   {breadcrumbLink}
                 </NextLink>
               );
@@ -267,7 +278,18 @@ export default function Breadcrumbs({
             )}
             <Grid item>{tempContent}</Grid>
             {title && titleBottom && (
-              <Grid item sx={{ mt: card === false ? 0.25 : 1 }}>
+              <Grid
+                item
+                sx={[
+                  card === false
+                    ? {
+                        mt: 0.25
+                      }
+                    : {
+                        mt: 1
+                      }
+                ]}
+              >
                 <Typography variant="h2">{custom ? heading : item?.title}</Typography>
               </Grid>
             )}
@@ -277,6 +299,5 @@ export default function Breadcrumbs({
       );
     }
   }
-
   return breadcrumbContent;
 }

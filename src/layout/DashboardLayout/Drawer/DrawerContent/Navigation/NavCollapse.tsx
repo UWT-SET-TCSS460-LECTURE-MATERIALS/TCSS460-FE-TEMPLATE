@@ -61,8 +61,6 @@ const PopperStyled = styled(Popper)(({ theme }) => ({
       display: 'block',
       position: 'absolute',
       top: 38,
-      ...(theme.direction !== 'rtl' && { left: -5 }),
-      ...(theme.direction === 'rtl' && { right: -5 }),
       width: 10,
       height: 10,
       background: theme.palette.background.paper,
@@ -285,20 +283,53 @@ export default function NavCollapse({ menu, level, parentId, setSelectedItems, s
             selected={selected === menu.id}
             {...(!drawerOpen && { onMouseEnter: (e: ListItemClick) => handleClick(e, true), onMouseLeave: handleClose })}
             onClick={(e: ListItemClick) => handleClick(e, true)}
-            sx={{
-              pl: drawerOpen ? `${level * 28}px` : 1.5,
-              py: !drawerOpen && level === 1 ? 1.25 : 1,
-              ...(drawerOpen && {
-                '&:hover': {
-                  bgcolor: mode === ThemeMode.DARK ? 'divider' : 'primary.lighter'
-                },
+            sx={[
+              {
+                py: !drawerOpen && level === 1 ? 1.25 : 1
+              },
+              drawerOpen
+                ? {
+                    pl: `${level * 28}px`
+                  }
+                : {
+                    pl: 1.5
+                  },
+              mode === ThemeMode.DARK
+                ? {
+                    '&:hover': {
+                      bgcolor: 'divider'
+                    }
+                  }
+                : {
+                    '&:hover': {
+                      bgcolor: 'primary.lighter'
+                    }
+                  },
+              mode === ThemeMode.DARK
+                ? {
+                    '&.Mui-selected': {
+                      '&:hover': {
+                        bgcolor: 'divider'
+                      }
+                    }
+                  }
+                : {
+                    '&.Mui-selected': {
+                      '&:hover': {
+                        bgcolor: 'transparent'
+                      }
+                    }
+                  },
+              drawerOpen && {
                 '&.Mui-selected': {
                   bgcolor: 'transparent',
                   color: iconSelectedColor,
-                  '&:hover': { color: iconSelectedColor, bgcolor: mode === ThemeMode.DARK ? 'divider' : 'transparent' }
+                  '&:hover': {
+                    color: iconSelectedColor
+                  }
                 }
-              }),
-              ...(!drawerOpen && {
+              },
+              !drawerOpen && {
                 '&:hover': {
                   bgcolor: 'transparent'
                 },
@@ -308,8 +339,8 @@ export default function NavCollapse({ menu, level, parentId, setSelectedItems, s
                   },
                   bgcolor: 'transparent'
                 }
-              })
-            }}
+              }
+            ]}
             {...((drawerOpen &&
               menu.isDropdown && {
                 'aria-controls': openCollapse ? `${menu.id}-menu` : undefined,
@@ -321,27 +352,50 @@ export default function NavCollapse({ menu, level, parentId, setSelectedItems, s
             {menuIcon && (
               <ListItemIcon
                 onClick={handlerIconLink}
-                sx={{
-                  minWidth: 28,
-                  color: selected === menu.id ? 'primary.main' : textColor,
-                  ...(!drawerOpen && {
+                sx={[
+                  {
+                    minWidth: 28
+                  },
+                  selected === menu.id
+                    ? {
+                        color: 'primary.main'
+                      }
+                    : {
+                        color: textColor
+                      },
+                  mode === ThemeMode.DARK
+                    ? {
+                        '&:hover': {
+                          bgcolor: 'secondary.light'
+                        }
+                      }
+                    : {
+                        '&:hover': {
+                          bgcolor: 'secondary.lighter'
+                        }
+                      },
+                  !drawerOpen && {
                     borderRadius: 1.5,
                     width: 36,
                     height: 36,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    '&:hover': {
-                      bgcolor: mode === ThemeMode.DARK ? 'secondary.light' : 'secondary.lighter'
-                    }
-                  }),
-                  ...(!drawerOpen &&
-                    selected === menu.id && {
-                      bgcolor: mode === ThemeMode.DARK ? 'primary.900' : 'primary.lighter',
-                      '&:hover': {
-                        bgcolor: mode === ThemeMode.DARK ? 'primary.darker' : 'primary.lighter'
-                      }
-                    })
-                }}
+                    ...(mode === ThemeMode.DARK
+                      ? {
+                          bgcolor: 'primary.900',
+                          '&:hover': {
+                            bgcolor: 'primary.darker'
+                          }
+                        }
+                      : {
+                          bgcolor: 'primary.lighter',
+                          '&:hover': {
+                            bgcolor: 'primary.lighter'
+                          }
+                        })
+                  },
+                  !drawerOpen && selected === menu.id && {}
+                ]}
               >
                 {menuIcon}
               </ListItemIcon>
@@ -372,14 +426,32 @@ export default function NavCollapse({ menu, level, parentId, setSelectedItems, s
                   }}
                   color="secondary"
                   variant="outlined"
-                  sx={{
-                    width: 20,
-                    height: 20,
-                    mr: '-5px',
-                    color: 'secondary.dark',
-                    borderColor: open ? 'primary.light' : 'secondary.light',
-                    '&:hover': { borderColor: open ? 'primary.main' : 'secondary.main' }
-                  }}
+                  sx={[
+                    {
+                      width: 20,
+                      height: 20,
+                      mr: '-5px',
+                      color: 'secondary.dark'
+                    },
+                    open
+                      ? {
+                          borderColor: 'primary.light'
+                        }
+                      : {
+                          borderColor: 'secondary.light'
+                        },
+                    open
+                      ? {
+                          '&:hover': {
+                            borderColor: 'primary.main'
+                          }
+                        }
+                      : {
+                          '&:hover': {
+                            borderColor: 'secondary.main'
+                          }
+                        }
+                  ]}
                 >
                   {miniMenuOpened || open ? (
                     <UpOutlined style={{ fontSize: '0.625rem', color: theme.palette.primary.main }} />
@@ -509,7 +581,6 @@ export default function NavCollapse({ menu, level, parentId, setSelectedItems, s
             />
             {miniMenuOpened ? <RightOutlined /> : <DownOutlined />}
           </Box>
-
           {anchorEl && (
             <PopperStyled
               id={popperId}

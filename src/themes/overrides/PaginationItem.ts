@@ -78,8 +78,8 @@ export default function PaginationItem(theme: Theme) {
             backgroundColor: 'transparent',
             fontSize: '1rem',
             fontWeight: 500,
-            '&.MuiPaginationItem-textPrimary': getColorStyle({ variant: 'text', color: 'primary', theme }),
-            '&.MuiPaginationItem-textSecondary': getColorStyle({ variant: 'text', color: 'secondary', theme }),
+            '&.MuiPaginationItem-text.MuiPaginationItem-colorPrimary': getColorStyle({ variant: 'text', color: 'primary', theme }),
+            '&.MuiPaginationItem-text.MuiPaginationItem-colorSecondary': getColorStyle({ variant: 'text', color: 'secondary', theme }),
             '&.MuiPaginationItem-textError': getColorStyle({ variant: 'text', color: 'error', theme }),
             '&.MuiPaginationItem-textSuccess': getColorStyle({ variant: 'text', color: 'success', theme }),
             '&.MuiPaginationItem-textInfo': getColorStyle({ variant: 'text', color: 'info', theme }),
@@ -115,8 +115,12 @@ export default function PaginationItem(theme: Theme) {
           borderColor: theme.palette.divider,
           '&.Mui-selected': {
             backgroundColor: 'transparent',
-            '&.MuiPaginationItem-outlinedPrimary': getColorStyle({ variant: 'outlined', color: 'primary', theme }),
-            '&.MuiPaginationItem-outlinedSecondary': getColorStyle({ variant: 'outlined', color: 'secondary', theme }),
+            '&.MuiPaginationItem-outlined.MuiPaginationItem-colorPrimary': getColorStyle({ variant: 'outlined', color: 'primary', theme }),
+            '&.MuiPaginationItem-outlined.MuiPaginationItem-colorSecondary': getColorStyle({
+              variant: 'outlined',
+              color: 'secondary',
+              theme
+            }),
             '&.MuiPaginationItem-outlinedError': getColorStyle({ variant: 'outlined', color: 'error', theme }),
             '&.MuiPaginationItem-outlinedSuccess': getColorStyle({ variant: 'outlined', color: 'success', theme }),
             '&.MuiPaginationItem-outlinedInfo': getColorStyle({ variant: 'outlined', color: 'info', theme }),

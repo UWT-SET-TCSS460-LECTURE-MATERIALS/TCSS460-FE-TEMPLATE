@@ -105,8 +105,8 @@ interface StyleProps extends IconButtonStyleProps {
   shape?: IconButtonShapeProps;
 }
 
-const IconButtonStyle = styled(MuiIconButton, { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'shape' })(
-  ({ theme, variant, shape, color }: StyleProps) => ({
+const IconButtonStyle = styled(MuiIconButton, { shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'shape' && prop !== 'color' })(
+  ({ theme, variant = 'text', color = 'primary' }: StyleProps) => ({
     position: 'relative',
     '::after': {
       content: '""',
@@ -116,36 +116,67 @@ const IconButtonStyle = styled(MuiIconButton, { shouldForwardProp: (prop) => pro
       top: 0,
       width: '100%',
       height: '100%',
-      borderRadius: shape === 'rounded' ? '50%' : 4,
+      borderRadius: 4,
       opacity: 0,
       transition: 'all 0.5s'
     },
-
     ':active::after': {
       position: 'absolute',
-      borderRadius: shape === 'rounded' ? '50%' : 4,
+      borderRadius: 4,
       left: 0,
       top: 0,
       opacity: 1,
       transition: '0s'
     },
-    ...(shape === 'rounded' && {
-      borderRadius: '50%'
-    }),
-    ...(variant === 'outlined' && {
-      border: '1px solid',
-      borderColor: 'inherit'
-    }),
-    ...(variant === 'dashed' && {
-      border: '1px dashed',
-      borderColor: 'inherit'
-    }),
-    ...(variant !== 'text' && {
-      '&.Mui-disabled': {
-        background: theme.palette.grey[200]
+    ...getColorStyle({ variant, theme, color }),
+    variants: [
+      {
+        props: {
+          shape: 'rounded'
+        },
+        style: {
+          '::after': {
+            borderRadius: '50%'
+          }
+        }
+      },
+      {
+        props: {
+          shape: 'rounded'
+        },
+        style: {
+          ':active::after': {
+            borderRadius: '50%'
+          }
+        }
+      },
+      {
+        props: {
+          shape: 'rounded'
+        },
+        style: {
+          borderRadius: '50%'
+        }
+      },
+      {
+        props: {
+          variant: 'outlined'
+        },
+        style: {
+          border: '1px solid',
+          borderColor: 'inherit'
+        }
+      },
+      {
+        props: {
+          variant: 'dashed'
+        },
+        style: {
+          border: '1px dashed',
+          borderColor: 'inherit'
+        }
       }
-    }),
-    ...getColorStyle({ variant, theme, color })
+    ]
   })
 );
 
