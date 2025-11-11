@@ -9,8 +9,6 @@ export default function MessagesPage({ params }: { params: Promise<{ slug: strin
 
   const search = searchParams.get('msg');
 
-  console.dir(search);
-
   const message = search && JSON.parse(search);
 
   return (

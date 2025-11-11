@@ -19,7 +19,7 @@ import { Formik } from 'formik';
 // project import
 import AnimateButton from 'components/@extended/AnimateButton';
 
-import axios from 'utils/axios';
+import { messagesApi } from 'services/messagesApi';
 
 export default function SendMessage({
   priority,
@@ -42,8 +42,8 @@ export default function SendMessage({
         message: Yup.string().max(255).required('Message is required')
       })}
       onSubmit={(values, { setErrors, setSubmitting, setValues, resetForm }) => {
-        axios
-          .post('c/message', { name: values.sender, message: values.message, priority })
+        messagesApi
+          .create({ name: values.sender, message: values.message, priority })
           .then((response) => {
             setSubmitting(false);
             resetForm({

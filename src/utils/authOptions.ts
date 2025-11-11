@@ -3,7 +3,7 @@ import type { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 // project import
-import axios from 'utils/axios';
+import { authApi } from 'services/authApi';
 
 function getRandomInt(min: number, max: number) {
   min = Math.ceil(min);
@@ -29,13 +29,18 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         try {
-          const response = await axios.post('/login', {
-            password: credentials?.password,
-            email: credentials?.email
+          const response = await authApi.login({
+            email: credentials?.email!,
+            password: credentials?.password!
           });
+
           if (response) {
-            response.data.user['accessToken'] = response.data.accessToken;
-            return response.data.user;
+            // TODO form your user object based on the Credentials API you're using.
+            // Check their API docs.
+            // console.dir(response.data);
+            const data = response.data.data;
+            data.user['accessToken'] = data.accessToken;
+            return data.user;
           }
         } catch (e: any) {
           console.error(e);
@@ -56,20 +61,21 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         try {
-          const response = await axios.post('/register', {
-            firstname: credentials?.firstname,
-            lastname: credentials?.lastname,
-            company: credentials?.company,
-            password: credentials?.password,
-            email: credentials?.email,
-            role: 1,
-            username: credentials?.email,
+          const response = await authApi.register({
+            firstname: credentials?.firstname!,
+            lastname: credentials?.lastname!,
+            password: credentials?.password!,
+            email: credentials?.email!,
+            username: credentials?.email!,
             phone: getRandomPhoneNumber() // TODO request phone number from user
           });
-
           if (response) {
-            response.data.user['accessToken'] = response.data.accessToken;
-            return response.data.user;
+            // TODO form your user object based on the Credentials API you're using.
+            // Check their API docs.
+            // console.dir(response.data);
+            const data = response.data.data;
+            data.user['accessToken'] = data.accessToken;
+            return data.user;
           }
         } catch (e: any) {
           console.error(e);

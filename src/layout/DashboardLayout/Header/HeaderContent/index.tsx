@@ -11,6 +11,7 @@ import MobileSection from './MobileSection';
 import { MenuOrientation } from 'config';
 import useConfig from 'hooks/useConfig';
 import DrawerHeader from 'layout/DashboardLayout/Drawer/DrawerHeader';
+import ModeSwitch from 'components/ModeSwitch';
 
 // ==============================|| HEADER - CONTENT ||============================== //
 
@@ -23,6 +24,7 @@ export default function HeaderContent() {
     <>
       {menuOrientation === MenuOrientation.HORIZONTAL && !downLG && <DrawerHeader open={true} />}
       <Box sx={{ width: '100%', ml: 1 }} />
+      <ModeSwitch />
       {!downLG && <FullScreen />}
       {!downLG && <Profile />}
       {downLG && <MobileSection />}

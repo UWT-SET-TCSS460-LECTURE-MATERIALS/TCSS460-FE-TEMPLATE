@@ -64,7 +64,6 @@ export default function AuthRegister({ providers, csrfToken }: any) {
         firstname: '',
         lastname: '',
         email: '',
-        company: '',
         password: '',
         submit: null
       }}
@@ -85,7 +84,6 @@ export default function AuthRegister({ providers, csrfToken }: any) {
           lastname: values.lastname,
           email: trimmedEmail,
           password: values.password,
-          company: values.company,
           callbackUrl: APP_DEFAULT_PATH
         }).then((res: any) => {
           if (res?.error) {
@@ -139,27 +137,6 @@ export default function AuthRegister({ providers, csrfToken }: any) {
               {touched.lastname && errors.lastname && (
                 <FormHelperText error id="helper-text-lastname-signup">
                   {errors.lastname}
-                </FormHelperText>
-              )}
-            </Grid>
-            <Grid item xs={12}>
-              <Stack spacing={1}>
-                <InputLabel htmlFor="company-signup">Company</InputLabel>
-                <OutlinedInput
-                  fullWidth
-                  error={Boolean(touched.company && errors.company)}
-                  id="company-signup"
-                  value={values.company}
-                  name="company"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  placeholder="Enter your company name"
-                  inputProps={{}}
-                />
-              </Stack>
-              {touched.company && errors.company && (
-                <FormHelperText error id="helper-text-company-signup">
-                  {errors.company}
                 </FormHelperText>
               )}
             </Grid>

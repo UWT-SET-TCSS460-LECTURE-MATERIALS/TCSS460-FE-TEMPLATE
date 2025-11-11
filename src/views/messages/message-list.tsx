@@ -11,27 +11,31 @@ import Container from '@mui/material/Container';
 import { Divider, List } from '@mui/material';
 
 // project import
-import axios from 'utils/axios';
+import { messagesApi } from 'services/messagesApi';
 import { IMessage } from 'types/message';
 import PrioritySelector from 'components/PrioritySelector';
 import { NoMessage, MessageListItem } from 'components/MessageListItem';
+import { useTheme } from '@mui/material/styles';
+import { ThemeMode } from 'config';
 
 export default function MessagesList() {
   const [messages, setMessages] = React.useState<IMessage[]>([]);
   const [priority, setPriority] = React.useState(0);
+  const theme = useTheme();
 
   React.useEffect(() => {
-    axios
-      .get('c/message/offset?limit=50&offset=0')
+    messagesApi
+      .getAllPaginated(0, 25)
       .then((response) => {
-        setMessages(response.data.entries);
+        setMessages(response.data.data.entries);
+        console.dir(response);
       })
       .catch((error) => console.error(error));
   }, []);
 
   const handleDelete = (name: string) => {
-    axios
-      .delete('c/message/' + name)
+    messagesApi
+      .delete(name)
       .then((response) => {
         response.status == 200 && setMessages(messages.filter((msg) => msg.name !== name));
       })
@@ -45,7 +49,15 @@ export default function MessagesList() {
     .map((msg, index, messages) => (
       <React.Fragment key={'msg list item: ' + index}>
         <MessageListItem message={msg} onDelete={handleDelete} />
-        {index < messages.length - 1 && <Divider variant="middle" component="li" />}
+        {index < messages.length - 1 && (
+          <Divider
+            sx={{
+              borderColor: theme.palette.mode === ThemeMode.DARK ? '#555555' : 'grey.A800'
+            }}
+            variant="middle"
+            component="li"
+          />
+        )}
       </React.Fragment>
     ));
 

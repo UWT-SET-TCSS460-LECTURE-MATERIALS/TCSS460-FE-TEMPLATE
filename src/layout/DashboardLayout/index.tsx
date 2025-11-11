@@ -16,7 +16,7 @@ import Header from './Header';
 import Footer from './Footer';
 import HorizontalBar from './Drawer/HorizontalBar';
 import Loader from 'components/Loader';
-import Breadcrumbs from 'components/@extended/Breadcrumbs';
+// import Breadcrumbs from 'components/@extended/Breadcrumbs';
 
 import { MenuOrientation } from 'config';
 import useConfig from 'hooks/useConfig';
@@ -63,7 +63,7 @@ export default function DashboardLayout({ children }: Props) {
             flexDirection: 'column'
           }}
         >
-          <Breadcrumbs />
+          {/* <Breadcrumbs /> */}
           {children}
           <Footer />
         </Container>

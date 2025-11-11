@@ -13,9 +13,9 @@ export function MessageListItem({ message, onDelete }: { message: IMessage; onDe
   const router = useRouter();
   const { onChangeMessage } = useMessage();
 
-  function onItemClick(msg: IMessage) {
-    console.dir(msg);
-  }
+  // function onItemClick(msg: IMessage) {
+  //   console.dir(msg);
+  // }
 
   // function onItemClick({ name }: IMessage) {
   //   router.push('/messages/msgParam/' + name);
@@ -25,10 +25,10 @@ export function MessageListItem({ message, onDelete }: { message: IMessage; onDe
   //   router.push('/messages/msgQuery?msg=' + JSON.stringify(msg));
   // }
 
-  // function onItemClick(msg: IMessage) {
-  //   onChangeMessage(msg);
-  //   router.push('/messages/msgContext/');
-  // }
+  function onItemClick(msg: IMessage) {
+    onChangeMessage(msg);
+    router.push('/messages/msgContext/');
+  }
 
   return (
     <ListItem

@@ -6,4 +6,5 @@ export interface IMessage {
 
 export interface MessageContextProps extends IMessage {
   onChangeMessage: (msg: IMessage) => void;
+  clearContext: () => void;
 }
