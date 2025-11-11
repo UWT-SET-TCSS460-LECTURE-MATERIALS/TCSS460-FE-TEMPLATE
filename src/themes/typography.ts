@@ -9,7 +9,7 @@ import { FontFamily } from 'types/config';
 export default function Typography(fontFamily: FontFamily): TypographyVariantsOptions {
   return {
     htmlFontSize: 16,
-    fontFamily,
+    fontFamily: 'inherit',
     fontWeightLight: 300,
     fontWeightRegular: 400,
     fontWeightMedium: 500,

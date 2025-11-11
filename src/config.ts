@@ -15,7 +15,7 @@ export const HORIZONTAL_MAX_ITEM = 7;
 export const DRAWER_WIDTH = 260;
 export const MINI_DRAWER_WIDTH = 60;
 
-const publicSans = Public_Sans({ subsets: ['latin'], weight: ['400', '500', '300', '700'] });
+export const publicSans = Public_Sans({ subsets: ['latin'], weight: ['400', '500', '300', '700'], display: 'swap' });
 
 export enum SimpleLayoutType {
   SIMPLE = 'simple',

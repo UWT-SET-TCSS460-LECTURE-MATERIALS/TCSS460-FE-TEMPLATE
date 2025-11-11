@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
 
 // next
 import { SessionProvider } from 'next-auth/react';
@@ -16,7 +16,7 @@ import { ConfigProvider } from 'contexts/ConfigContext';
 
 // ==============================|| APP - THEME, ROUTER, LOCAL ||============================== //
 
-export default function ProviderWrapper({ children }: { children: ReactElement }) {
+export default function ProviderWrapper({ children }: { children: ReactNode }) {
   return (
     <ConfigProvider>
       <ThemeCustomization>

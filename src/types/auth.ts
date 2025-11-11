@@ -1,9 +1,9 @@
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
 
 // ==============================|| AUTH TYPES ||============================== //
 
 export type GuardProps = {
-  children: ReactElement | null;
+  children: ReactNode;
 };
 
 export type UserProfile = {
