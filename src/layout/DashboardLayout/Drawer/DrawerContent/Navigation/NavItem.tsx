@@ -84,26 +84,66 @@ export default function NavItem({ item, level, isParents = false }: Props) {
             target={itemTarget}
             disabled={item.disabled}
             selected={isSelected}
-            sx={{
-              zIndex: 1201,
-              pl: drawerOpen ? `${level * 28}px` : 1.5,
-              py: !drawerOpen && level === 1 ? 1.25 : 1,
-              ...(drawerOpen && {
-                '&:hover': {
-                  bgcolor: mode === ThemeMode.DARK ? 'divider' : 'primary.lighter'
-                },
+            sx={[
+              {
+                zIndex: 1201,
+                py: !drawerOpen && level === 1 ? 1.25 : 1
+              },
+              drawerOpen
+                ? {
+                    pl: `${level * 28}px`
+                  }
+                : {
+                    pl: 1.5
+                  },
+              mode === ThemeMode.DARK
+                ? {
+                    '&:hover': {
+                      bgcolor: 'divider'
+                    }
+                  }
+                : {
+                    '&:hover': {
+                      bgcolor: 'primary.lighter'
+                    }
+                  },
+              mode === ThemeMode.DARK
+                ? {
+                    '&.Mui-selected': {
+                      bgcolor: 'divider'
+                    }
+                  }
+                : {
+                    '&.Mui-selected': {
+                      bgcolor: 'primary.lighter'
+                    }
+                  },
+              mode === ThemeMode.DARK
+                ? {
+                    '&.Mui-selected': {
+                      '&:hover': {
+                        bgcolor: 'divider'
+                      }
+                    }
+                  }
+                : {
+                    '&.Mui-selected': {
+                      '&:hover': {
+                        bgcolor: 'primary.lighter'
+                      }
+                    }
+                  },
+              drawerOpen && {
                 '&.Mui-selected': {
-                  bgcolor: mode === ThemeMode.DARK ? 'divider' : 'primary.lighter',
                   borderRight: '2px solid',
                   borderRightColor: 'primary.main',
                   color: iconSelectedColor,
                   '&:hover': {
-                    color: iconSelectedColor,
-                    bgcolor: mode === ThemeMode.DARK ? 'divider' : 'primary.lighter'
+                    color: iconSelectedColor
                   }
                 }
-              }),
-              ...(!drawerOpen && {
+              },
+              !drawerOpen && {
                 '&:hover': {
                   bgcolor: 'transparent'
                 },
@@ -113,35 +153,58 @@ export default function NavItem({ item, level, isParents = false }: Props) {
                   },
                   bgcolor: 'transparent'
                 }
-              })
-            }}
+              }
+            ]}
             {...(downLG && {
               onClick: () => handlerDrawerOpen(false)
             })}
           >
             {itemIcon && (
               <ListItemIcon
-                sx={{
-                  minWidth: 28,
-                  color: isSelected ? iconSelectedColor : textColor,
-                  ...(!drawerOpen && {
+                sx={[
+                  {
+                    minWidth: 28
+                  },
+                  isSelected
+                    ? {
+                        color: iconSelectedColor
+                      }
+                    : {
+                        color: textColor
+                      },
+                  mode === ThemeMode.DARK
+                    ? {
+                        '&:hover': {
+                          bgcolor: 'secondary.light'
+                        }
+                      }
+                    : {
+                        '&:hover': {
+                          bgcolor: 'secondary.lighter'
+                        }
+                      },
+                  !drawerOpen && {
                     borderRadius: 1.5,
                     width: 36,
                     height: 36,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    '&:hover': {
-                      bgcolor: mode === ThemeMode.DARK ? 'secondary.light' : 'secondary.lighter'
-                    }
-                  }),
-                  ...(!drawerOpen &&
-                    isSelected && {
-                      bgcolor: mode === ThemeMode.DARK ? 'primary.900' : 'primary.lighter',
-                      '&:hover': {
-                        bgcolor: mode === ThemeMode.DARK ? 'primary.darker' : 'primary.lighter'
-                      }
-                    })
-                }}
+                    ...(mode === ThemeMode.DARK
+                      ? {
+                          bgcolor: 'primary.900',
+                          '&:hover': {
+                            bgcolor: 'primary.darker'
+                          }
+                        }
+                      : {
+                          bgcolor: 'primary.lighter',
+                          '&:hover': {
+                            bgcolor: 'primary.lighter'
+                          }
+                        })
+                  },
+                  !drawerOpen && isSelected && {}
+                ]}
               >
                 {itemIcon}
               </ListItemIcon>
@@ -149,7 +212,18 @@ export default function NavItem({ item, level, isParents = false }: Props) {
             {(drawerOpen || (!drawerOpen && level !== 1)) && (
               <ListItemText
                 primary={
-                  <Typography variant="h6" sx={{ color: isSelected ? iconSelectedColor : textColor }}>
+                  <Typography
+                    variant="h6"
+                    sx={[
+                      isSelected
+                        ? {
+                            color: iconSelectedColor
+                          }
+                        : {
+                            color: textColor
+                          }
+                    ]}
+                  >
                     {item.title}
                   </Typography>
                 }
@@ -186,19 +260,37 @@ export default function NavItem({ item, level, isParents = false }: Props) {
                   })}
                   color="secondary"
                   variant="outlined"
-                  sx={{
-                    position: 'absolute',
-                    top: 12,
-                    right: 20,
-                    zIndex: 1202,
-                    width: 20,
-                    height: 20,
-                    mr: -1,
-                    ml: 1,
-                    color: 'secondary.dark',
-                    borderColor: isSelected ? 'primary.light' : 'secondary.light',
-                    '&:hover': { borderColor: isSelected ? 'primary.main' : 'secondary.main' }
-                  }}
+                  sx={[
+                    {
+                      position: 'absolute',
+                      top: 12,
+                      right: 20,
+                      zIndex: 1202,
+                      width: 20,
+                      height: 20,
+                      mr: -1,
+                      ml: 1,
+                      color: 'secondary.dark'
+                    },
+                    isSelected
+                      ? {
+                          borderColor: 'primary.light'
+                        }
+                      : {
+                          borderColor: 'secondary.light'
+                        },
+                    isSelected
+                      ? {
+                          '&:hover': {
+                            borderColor: 'primary.main'
+                          }
+                        }
+                      : {
+                          '&:hover': {
+                            borderColor: 'secondary.main'
+                          }
+                        }
+                  ]}
                 >
                   <ActionIcon style={{ fontSize: '0.625rem' }} />
                 </IconButton>
@@ -217,19 +309,23 @@ export default function NavItem({ item, level, isParents = false }: Props) {
               handlerHorizontalActiveItem(item.id!);
             }
           })}
-          sx={{
-            zIndex: 1201,
-            ...(isParents && {
+          sx={[
+            {
+              zIndex: 1201
+            },
+            isParents && {
               p: 1,
               mr: 1
-            })
-          }}
+            }
+          ]}
         >
           {itemIcon && (
             <ListItemIcon
-              sx={{
-                minWidth: 28,
-                ...(!drawerOpen && {
+              sx={[
+                {
+                  minWidth: 28
+                },
+                !drawerOpen && {
                   borderRadius: 1.5,
                   width: 28,
                   height: 28,
@@ -238,15 +334,15 @@ export default function NavItem({ item, level, isParents = false }: Props) {
                   '&:hover': {
                     bgcolor: 'transparent'
                   }
-                }),
-                ...(!drawerOpen &&
+                },
+                !drawerOpen &&
                   isSelected && {
                     bgcolor: 'transparent',
                     '&:hover': {
                       bgcolor: 'transparent'
                     }
-                  })
-              }}
+                  }
+              ]}
             >
               {itemIcon}
             </ListItemIcon>
@@ -254,24 +350,30 @@ export default function NavItem({ item, level, isParents = false }: Props) {
 
           {!itemIcon && (
             <ListItemIcon
-              sx={{
-                color: isSelected ? 'primary.main' : 'secondary.dark',
-                ...(!drawerOpen && {
+              sx={[
+                isSelected
+                  ? {
+                      color: 'primary.main'
+                    }
+                  : {
+                      color: 'secondary.dark'
+                    },
+                !drawerOpen && {
                   borderRadius: 1.5,
                   alignItems: 'center',
                   justifyContent: 'flex-start',
                   '&:hover': {
                     bgcolor: 'transparent'
                   }
-                }),
-                ...(!drawerOpen &&
+                },
+                !drawerOpen &&
                   isSelected && {
                     bgcolor: 'transparent',
                     '&:hover': {
                       bgcolor: 'transparent'
                     }
-                  })
-              }}
+                  }
+              ]}
             >
               <Dot size={4} color={isSelected ? 'primary' : 'secondary'} />
             </ListItemIcon>

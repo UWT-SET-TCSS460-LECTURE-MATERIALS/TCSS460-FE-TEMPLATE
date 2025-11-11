@@ -65,20 +65,20 @@ function MainCard(
 
   return (
     <Card
-      sx={{
-        position: 'relative',
-        border: border ? '1px solid' : 'none',
+      sx={(theme) => ({
+        position: modal ? 'absolute' : 'relative',
         borderRadius: 1,
-        borderColor: theme.palette.mode === ThemeMode.DARK ? 'divider' : 'grey.A800',
+        borderColor: 'grey.A800',
         boxShadow: boxShadow && (!border || theme.palette.mode === ThemeMode.DARK) ? shadow || theme.customShadows.z1 : 'none',
+        border: border ? '1px solid' : 'none',
         ':hover': {
           boxShadow: boxShadow ? shadow || theme.customShadows.z1 : 'none'
         },
         ...(theme.palette.mode === ThemeMode.DARK && {
+          borderColor: 'divider',
           backgroundImage: 'none'
         }),
         ...(modal && {
-          position: 'absolute' as 'absolute',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
@@ -90,19 +90,25 @@ function MainCard(
           }
         }),
         ...sx
-      }}
+      })}
       ref={ref}
       {...others}
     >
       {/* card header and action */}
       {!darkTitle && title && (
-        <CardHeader sx={headerSX} titleTypographyProps={{ variant: 'subtitle1' }} title={title} action={secondary} subheader={subheader} />
+        <CardHeader
+          sx={headerSX}
+          title={title}
+          action={secondary}
+          subheader={subheader}
+          slotProps={{
+            title: { variant: 'subtitle1' }
+          }}
+        />
       )}
       {darkTitle && title && <CardHeader sx={headerSX} title={<Typography variant="h4">{title}</Typography>} action={secondary} />}
-
       {/* content & header divider */}
       {title && divider && <Divider />}
-
       {/* card content */}
       {content && <CardContent sx={contentSX}>{children}</CardContent>}
       {!content && children}

@@ -46,9 +46,9 @@ export default function Error404() {
           <Typography color="text.secondary" align="center" sx={{ width: { xs: '73%', sm: '61%' } }}>
             The page you are looking was moved, removed, renamed, or might never exist!
           </Typography>
-          <NextLink href={APP_DEFAULT_PATH} passHref legacyBehavior>
-            <Button variant="contained">Back To Home</Button>
-          </NextLink>
+          <Button component={NextLink} href={APP_DEFAULT_PATH} variant="contained">
+            Back To Home
+          </Button>
         </Stack>
       </Grid>
     </Grid>

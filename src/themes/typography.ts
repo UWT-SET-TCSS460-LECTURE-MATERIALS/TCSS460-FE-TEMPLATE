@@ -26,22 +26,22 @@ export default function Typography(fontFamily: FontFamily): TypographyVariantsOp
     },
     h3: {
       fontWeight: 600,
-      fontSize: '1.5rem',
+      fontSize: '1.75rem',
       lineHeight: 1.33
     },
     h4: {
       fontWeight: 600,
-      fontSize: '1.25rem',
+      fontSize: '1.5rem',
       lineHeight: 1.4
     },
     h5: {
       fontWeight: 600,
-      fontSize: '1rem',
+      fontSize: '1.25rem',
       lineHeight: 1.5
     },
     h6: {
       fontWeight: 400,
-      fontSize: '0.875rem',
+      fontSize: '1.125rem',
       lineHeight: 1.57
     },
     caption: {
@@ -50,11 +50,11 @@ export default function Typography(fontFamily: FontFamily): TypographyVariantsOp
       lineHeight: 1.66
     },
     body1: {
-      fontSize: '0.875rem',
+      fontSize: '1rem',
       lineHeight: 1.57
     },
     body2: {
-      fontSize: '0.75rem',
+      fontSize: '0.90rem',
       lineHeight: 1.66
     },
     subtitle1: {

@@ -43,7 +43,13 @@ export function MessageListItem({ message, onDelete }: { message: IMessage; onDe
         <ListItemAvatar>
           <PriorityAvatar priority={message.priority} />
         </ListItemAvatar>
-        <ListItemText primary={message.message} secondary={message.name} secondaryTypographyProps={{ color: 'gray' }} />
+        <ListItemText
+          primary={message.message}
+          secondary={message.name}
+          slotProps={{
+            secondary: { color: 'gray' }
+          }}
+        />
       </ListItemButton>
     </ListItem>
   );

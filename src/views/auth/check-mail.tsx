@@ -29,11 +29,18 @@ export default function CheckMail() {
         </Grid>
         <Grid item xs={12}>
           <AnimateButton>
-            <NextLink href="/login" passHref legacyBehavior>
-              <Button disableElevation fullWidth size="large" type="submit" variant="contained" color="primary">
-                Sign in
-              </Button>
-            </NextLink>
+            <Button
+              component={NextLink}
+              href="/login"
+              disableElevation
+              fullWidth
+              size="large"
+              type="submit"
+              variant="contained"
+              color="primary"
+            >
+              Sign in
+            </Button>
           </AnimateButton>
         </Grid>
       </Grid>

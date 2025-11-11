@@ -46,7 +46,19 @@ export default function Header() {
           edge="start"
           color="secondary"
           variant="light"
-          sx={{ color: 'text.primary', bgcolor: drawerOpen ? 'transparent' : iconBackColor, ml: { xs: 0, lg: -2 } }}
+          sx={[
+            {
+              color: 'text.primary',
+              ml: { xs: 0, lg: -2 }
+            },
+            drawerOpen
+              ? {
+                  bgcolor: 'transparent'
+                }
+              : {
+                  bgcolor: iconBackColor
+                }
+          ]}
         >
           {!drawerOpen ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         </IconButton>
