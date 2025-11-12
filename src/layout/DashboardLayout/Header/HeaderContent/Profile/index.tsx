@@ -23,7 +23,6 @@ import MainCard from 'components/MainCard';
 import Transitions from 'components/@extended/Transitions';
 import IconButton from 'components/@extended/IconButton';
 
-import { ThemeMode } from 'config';
 import useUser from 'hooks/useUser';
 
 // assets
@@ -54,21 +53,23 @@ export default function Profile() {
     setOpen(false);
   };
 
-  const iconBackColorOpen = theme.palette.mode === ThemeMode.DARK ? 'background.default' : 'grey.100';
-
   return (
     <Box sx={{ flexShrink: 0, ml: 0.75 }}>
       <ButtonBase
-        sx={{
+        sx={(theme) => ({
           p: 0.25,
-          bgcolor: open ? iconBackColorOpen : 'transparent',
           borderRadius: 1,
-          '&:hover': { bgcolor: theme.palette.mode === ThemeMode.DARK ? 'secondary.light' : 'secondary.lighter' },
+          '&:hover': {
+            bgcolor: 'secondary.lighter',
+            ...theme.applyStyles('dark', {
+              bgcolor: 'secondary.light'
+            })
+          },
           '&:focus-visible': {
             outline: `2px solid ${theme.palette.secondary.dark}`,
             outlineOffset: 2
           }
-        }}
+        })}
         aria-label="open profile"
         ref={anchorRef}
         aria-controls={open ? 'profile-grow' : undefined}

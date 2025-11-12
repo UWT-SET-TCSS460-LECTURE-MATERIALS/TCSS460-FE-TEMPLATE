@@ -46,17 +46,32 @@ export default function MainDrawer({ window }: Props) {
           open={drawerOpen}
           onClose={() => handlerDrawerOpen(!drawerOpen)}
           ModalProps={{ keepMounted: true }}
-          sx={{
-            display: { xs: drawerOpen ? 'block' : 'none', lg: 'none' },
-            '& .MuiDrawer-paper': {
-              boxSizing: 'border-box',
-              width: DRAWER_WIDTH,
-              borderRight: '1px solid',
-              borderRightColor: 'divider',
-              backgroundImage: 'none',
-              boxShadow: 'inherit'
-            }
-          }}
+          sx={[
+            {
+              display: {
+                lg: 'none'
+              },
+              '& .MuiDrawer-paper': {
+                boxSizing: 'border-box',
+                width: DRAWER_WIDTH,
+                borderRight: '1px solid',
+                borderRightColor: 'divider',
+                backgroundImage: 'none',
+                boxShadow: 'inherit'
+              }
+            },
+            drawerOpen
+              ? {
+                  display: {
+                    xs: 'block'
+                  }
+                }
+              : {
+                  display: {
+                    xs: 'none'
+                  }
+                }
+          ]}
         >
           {drawerHeader}
           {drawerContent}

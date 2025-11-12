@@ -26,11 +26,9 @@ export default function Register() {
         <Grid item xs={12}>
           <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ mb: { xs: -0.5, sm: 0.5 } }}>
             <Typography variant="h3">Sign up</Typography>
-            <NextLink href="/login" passHref legacyBehavior>
-              <Link variant="body1" color="primary">
-                Already have an account?
-              </Link>
-            </NextLink>
+            <Link component={NextLink} href="/login" variant="body1" color="primary">
+              Already have an account?
+            </Link>
           </Stack>
         </Grid>
         <Grid item xs={12}>

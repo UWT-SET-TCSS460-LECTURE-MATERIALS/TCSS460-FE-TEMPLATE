@@ -20,11 +20,9 @@ export default function ForgotPassword() {
         <Grid item xs={12}>
           <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ mb: { xs: -0.5, sm: 0.5 } }}>
             <Typography variant="h3">Forgot Password</Typography>
-            <NextLink href="/login" passHref legacyBehavior>
-              <Link variant="body1" color="primary">
-                Back to Login
-              </Link>
-            </NextLink>
+            <Link component={NextLink} href="/login" variant="body1" color="primary">
+              Back to Login
+            </Link>
           </Stack>
         </Grid>
         <Grid item xs={12}>

@@ -15,13 +15,10 @@ import { messagesApi } from 'services/messagesApi';
 import { IMessage } from 'types/message';
 import PrioritySelector from 'components/PrioritySelector';
 import { NoMessage, MessageListItem } from 'components/MessageListItem';
-import { useTheme } from '@mui/material/styles';
-import { ThemeMode } from 'config';
 
 export default function MessagesList() {
   const [messages, setMessages] = React.useState<IMessage[]>([]);
   const [priority, setPriority] = React.useState(0);
-  const theme = useTheme();
 
   React.useEffect(() => {
     messagesApi
@@ -51,9 +48,12 @@ export default function MessagesList() {
         <MessageListItem message={msg} onDelete={handleDelete} />
         {index < messages.length - 1 && (
           <Divider
-            sx={{
-              borderColor: theme.palette.mode === ThemeMode.DARK ? '#555555' : 'grey.A800'
-            }}
+            sx={(theme) => ({
+              borderColor: 'grey.A800',
+              ...theme.applyStyles('dark', {
+                borderColor: '#555555'
+              })
+            })}
             variant="middle"
             component="li"
           />
